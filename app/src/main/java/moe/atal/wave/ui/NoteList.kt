@@ -133,6 +133,7 @@ fun PopupFullNote(
                         TextButton(
                             onClick =
                             {
+                                onDismiss()
                                 CoroutineScope(Dispatchers.IO).launch {
                                     dao.delete(note)
                                 }
