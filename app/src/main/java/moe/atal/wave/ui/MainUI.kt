@@ -1,6 +1,7 @@
 package moe.atal.wave.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -87,10 +88,17 @@ fun MainUI()
             1 -> { dao.getRecentK(recentK) }
             2 -> { dao.getAfter(datePickerState.selectedDateMillis!!) }
             else -> {
-                dao.getBetween(
-                    dateRangePickerState.selectedStartDateMillis!!,
-                    dateRangePickerState.selectedEndDateMillis!!
-                )
+                if (dateRangePickerState.selectedStartDateMillis != null &&
+                    dateRangePickerState.selectedEndDateMillis   != null) {
+                    dao.getBetween(
+                        dateRangePickerState.selectedStartDateMillis!!,
+                        dateRangePickerState.selectedEndDateMillis!!
+                    )
+                }
+                else
+                {
+                    dao.getAll()
+                }
             }
         }
 
@@ -199,7 +207,7 @@ fun MainUI()
                                 3 -> {
                                     IconButton(
                                         onClick = {
-                                            mode = 2
+                                            mode = 3
                                             showDateRangePicker = !showDateRangePicker
                                         }
                                     ) {
@@ -213,6 +221,12 @@ fun MainUI()
                             }
                         }
                     }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Absolute.Right,
+                ) {
+                    ConfirmBottom( onDismiss = { showSelectRange = false }, text = "确定")
                 }
             }
         }
@@ -241,7 +255,7 @@ fun MainUI()
             onDismissRequest = { showDatePicker = false },
             confirmButton = {
                 TextButton(onClick = {
-                    showDatePicker = false
+                    showDateRangePicker = false
                 }) {
                     Text("确定")
                 }

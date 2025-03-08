@@ -218,7 +218,7 @@ private fun PickerTextFiled(
 }
 
 @Composable
-private fun ConfirmBottom(
+fun ConfirmBottom(
     onDismiss: () -> Unit,
     text : String
 ) {
