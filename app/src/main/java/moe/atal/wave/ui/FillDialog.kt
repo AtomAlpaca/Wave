@@ -51,6 +51,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
+import kotlin.math.roundToLong
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -107,7 +108,7 @@ fun FillDialog(
                     Text(modifier = Modifier
                         .weight(4f)
                         .wrapContentHeight(Alignment.CenterVertically),
-                        text = "心情指数：${sliderPosition.toLong()}")
+                        text = "心情指数：${sliderPosition.roundToLong()}")
                     Slider(
                         modifier = Modifier.weight(6f),
                         value = sliderPosition,
@@ -172,7 +173,7 @@ fun FillDialog(
                                         timePickerState.hour.toLong(),
                                         timePickerState.minute.toLong()
                                     ),
-                                    mood = sliderPosition.toLong(),
+                                    mood = sliderPosition.roundToLong(),
                                     note = text
                                 )
                             )
