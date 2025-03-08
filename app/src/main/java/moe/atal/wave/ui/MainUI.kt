@@ -1,7 +1,6 @@
 package moe.atal.wave.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -142,8 +141,9 @@ fun MainUI()
         Dialog(
             onDismissRequest = { showSelectRange = false }
         ) {
-
-            Card {
+            Card (
+                modifier = Modifier.padding(0.dp, 20.dp)
+            ) {
                 Column(Modifier.selectableGroup()) {
                     for (i in (0 .. 3)) {
                         Row(
@@ -259,10 +259,12 @@ fun MainUI()
         Dialog(
             onDismissRequest = { showAbout = false }
         ) {
-            Card {
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
+            Card (
+                modifier = Modifier.height(250.dp)
+            ) {
+                Column (
+                    modifier = Modifier.fillMaxWidth().padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         style = MaterialTheme.typography.titleLarge,
