@@ -213,9 +213,28 @@ fun MainUI()
                                     ) {
                                         Icon(Icons.Default.DateRange, "选择日期")
                                     }
-                                    Text(convertMillisToDate(dateRangePickerState.selectedStartDateMillis!!) +
+                                    Text(
+                                        convertMillisToDate(
+                                            if (dateRangePickerState.selectedStartDateMillis != null)
+                                            {
+                                                dateRangePickerState.selectedStartDateMillis!!
+                                            }
+                                            else
+                                            {
+                                                currentTime.timeInMillis
+                                            }
+                                        ) +
                                             "至" +
-                                            convertMillisToDate(dateRangePickerState.selectedStartDateMillis!!)
+                                            convertMillisToDate(
+                                                if (dateRangePickerState.selectedEndDateMillis != null)
+                                                {
+                                                    dateRangePickerState.selectedEndDateMillis!!
+                                                }
+                                                else
+                                                {
+                                                    currentTime.timeInMillis
+                                                }
+                                            )
                                     )
                                 }
                             }
