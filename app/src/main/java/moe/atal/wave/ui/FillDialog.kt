@@ -50,7 +50,6 @@ import moe.atal.wave.data.NoteDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
-import java.util.TimeZone
 import kotlin.math.roundToLong
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -232,14 +231,11 @@ fun ConfirmBottom(
 
 @SuppressLint("SimpleDateFormat")
 fun convertMillisToDate(millis: Long): String {
-    val formatter = SimpleDateFormat("yyyy 年 MM 月 dd 日").apply {
-        timeZone = TimeZone.getTimeZone("UTC")
-    }
+    val formatter = SimpleDateFormat("yyyy 年 MM 月 dd 日")
     return formatter.format(Date(millis))
 }
 
 fun convertToMillis(date: Long, hour: Long, minute: Long): Long {
-    val tmp : Long = 24 * 60 * 60 * 1000
-    return (date / tmp) * tmp + 60 * 60 * 1000 * hour + 60 * 1000 * minute
+    return date + 60 * 60 * 1000 * hour + 60 * 1000 * minute
 }
 
